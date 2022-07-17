@@ -1,2 +1,2 @@
 # MyCart
- E-commerce in Django framework
+ E-commerce Site in Django framework
