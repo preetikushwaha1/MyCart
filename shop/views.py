@@ -9,7 +9,7 @@ def index(request):
 
 #==========About Us ===========================#
 def aboutUs(request):
-    return HttpResponse("We at About Us page")
+    return render(request, "shop/about.html")
 
 
 #============= Contact us =======================#
