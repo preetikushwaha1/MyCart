@@ -69,11 +69,11 @@
         <div class="carousel-item active">
             <div class="col-xs-3 col-sm-3 col-md-3">
               <div class="card" style="width:18rem">
-                <img src="{% static 'shop/headphone.jpg' %}" class="d-block w-100" alt="...">
+                <img src='media/{{products.0.image}}' class="d-block w-100" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text">some representative placeholder content for the second slide.</p>
-                    <a herf="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{products.0.product_name}}</h5>
+                    <p class="card-text">{{products.0.desc}}</p>
+                    <a herf="#" class="btn btn-primary">Add To Cart</a>
                   </div>
               </div>
             </div>
@@ -85,9 +85,9 @@
               <div class="card" style="width:18rem">
                 <img src="{% static 'shop/headphone.jpg' %}" class="d-block w-100" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card Title</h5>
-                    <p class="card-text">some representative placeholder content for the second slide.</p>
-                    <a herf="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{i.product_name }}</h5>
+                    <p class="card-text">{{ i.desc }}</p>
+                    <a herf="#" class="btn btn-primary">Add To Cart</a>
                   </div>
               </div>
             </div>
