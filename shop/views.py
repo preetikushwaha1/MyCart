@@ -10,7 +10,7 @@ def index(request):
     Products = Product.objects.all()
     print(Products)
     n = len(Products)       # 6
-    nSlide = n // 4 + ceil( (n/4)- (n//4))
+    nSlide = n // 4 + ceil( (n/4)- (n//4))  #6//4 + ceil((6/4)-(6//4)) = 0+ ceil(2 - 0) = 2
     print(nSlide)
     params ={'no_of_slide':nSlide, 'range': range(1,nSlide), 'products': Products}
     return render(request, "shop/index.html", params)
