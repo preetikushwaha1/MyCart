@@ -14,8 +14,8 @@
 
         .col-md-3 img{
 
-          width:100%;
-          height:auto;
+          width:100px;
+          height:150px;
         }
 
         body .carousel-indicator li{
@@ -53,6 +53,7 @@
 {% block body %}
 
 <div class="container">
+    <h1> Products</h1>
     <!--=================== carousel =====================================-->
     <div id="demo" class="carousel slide my-3" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -98,7 +99,8 @@
             
         {% endfor %}
     </div> <!---=======<div class="container carousel-inner no padding">=============-->
-
+</div>
+</div>
     <a class="carousel-control-prev" href="#demo" data-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </a>
@@ -108,5 +110,5 @@
 
 
 {% endblock %}
-</div>
+
 </div>
