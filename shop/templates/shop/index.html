@@ -18,7 +18,7 @@
           height:150px;
         }
 
-        body .carousel-indicator li{
+        body .carousel-indicators li{
 
             background-color: blue;
 
@@ -28,7 +28,7 @@
           background-color:rgb(227, 15, 36);
         }
 
-        body .carousel-indicator{
+        body .carousel-indicators{
 
           bottom:0; 
         }
@@ -38,6 +38,14 @@
         {
       
             background-color: rgb(11, 11, 29);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next
+        {
+      
+            top:auto;
+            bottom:auto;
         }
 
         body .no-padding{
@@ -53,14 +61,16 @@
 {% block body %}
 
 <div class="container">
-    <h1> Products</h1>
+
+    {% for products, range, nSlide in all_prods %}
+    <h1>{{products.0.category}}</h1>
     <!--=================== carousel =====================================-->
-    <div id="demo" class="carousel slide my-3" data-ride="carousel">
+    <div id="demo{{forloop.counter}}" class="carousel slide my-3" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
 
           {% for i in range %}
-          <li data-target="#demo" data-slide-to="{{i}}"></li>
+          <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
           {% endfor %}
         </ol>
 
@@ -101,14 +111,14 @@
     </div> <!---=======<div class="container carousel-inner no padding">=============-->
 </div>
 </div>
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
+    <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
       <span class="carousel-control-next-icon"></span>
     </a>
-
+{% endfor %}
+</div>
 
 {% endblock %}
 
-</div>

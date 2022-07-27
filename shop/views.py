@@ -12,8 +12,13 @@ def index(request):
     n = len(Products)       # 6
     nSlide = n // 4 + ceil( (n/4)- (n//4))  #6//4 + ceil((6/4)-(6//4)) = 0+ ceil(2 - 0) = 2
     print(nSlide)
-    params ={'no_of_slide':nSlide, 'range': range(1,nSlide), 'products': Products}
-    return render(request, "shop/index.html", params)
+    #params ={'no_of_slide':nSlide, 'range': range(1,nSlide), 'products': Products}  #list 1
+
+    #==== Now will create a list of list
+    all_prods = [ [Products, range(1, nSlide), nSlide ],
+                    [Products, range(1, nSlide), nSlide ] ]
+                    
+    return render(request, "shop/index.html", {'all_prods': all_prods})
 
 #==========About Us ===========================#
 def aboutUs(request):
