@@ -26,9 +26,9 @@ def index(request):
 
     #params ={'no_of_slide':nSlide, 'range': range(1,nSlide), 'products': Products}  #list 1
 
-    #==== Now will create a list of list
+    #==== Now will create a list of list ---======================#
     """all_prods = [ [Products, range(1, nSlide), nSlide ],
-                    [Products, range(1, nSlide), nSlide ] ]"""
+                    [Products, range(1, nSlide), nSlide ] ] """
 
     return render(request, "shop/index.html", {'all_prods': all_prods})
 
