@@ -19,8 +19,9 @@ def index(request):
     categories = { item['category'] for item in category_prods}
     for cat in categories:
         prods = Product.objects.filter(category = cat)
-        n= len(Products)
-        nSlide = n//4 + ceil((n/4)- (n//4))
+        n= len(Products)            #6
+        nSlide = n//4 + ceil((n/4)- (n//4))    
+        print("nSlide=",nSlide) 
         all_prods.append([prods, range(1, nSlide), nSlide])
         print(cat)
 

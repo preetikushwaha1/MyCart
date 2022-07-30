@@ -15,7 +15,7 @@
         .col-md-3 img{
 
           width:100px;
-          height:150px;
+          max-height:150px;
         }
 
         body .carousel-indicators li{
@@ -63,14 +63,14 @@
 <div class="container">
 
     {% for products, range, nSlide in all_prods %}
-    <h1>{{products.0.category}}</h1>
+    <h5 class="my-4">Flash Sale On {{products.0.category}}- Recommended Items</h5>
     <!--=================== carousel =====================================-->
     <div id="demo{{forloop.counter}}" class="carousel slide my-3" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
 
           {% for i in range %}
-          <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+          <li data-target="#demo{{forloop.parent.counter}}" data-slide-to="{{i}}"></li>
           {% endfor %}
         </ol>
 
@@ -84,7 +84,7 @@
                   <div class="card-body">
                     <h5 class="card-title">{{products.0.product_name}}</h5>
                     <p class="card-text">{{products.0.desc}}</p>
-                    <a herf="#" class="btn btn-primary">Add To Cart</a>
+                    <button id="prod{{products.0.id}}" class="btn btn-primary cart">Add To Cart</button>
                   </div>
               </div>
             </div>
@@ -98,7 +98,7 @@
                   <div class="card-body">
                     <h5 class="card-title">{{i.product_name }}</h5>
                     <p class="card-text">{{ i.desc }}</p>
-                    <a herf="#" class="btn btn-primary">Add To Cart</a>
+                    <button id="prod{{i.id}}" class="btn btn-primary cart">Add To Cart</button>
                   </div>
               </div>
             </div>
@@ -122,3 +122,27 @@
 
 {% endblock %}
 
+
+
+<!--==================Js script block =====================-->
+{% block js %} 
+<script>
+    console.log("JS is working")
+
+    if(localStorage.getItem('cart')== null)
+    {
+        var cart = {};
+    }
+    else
+    {
+      cart = JSON.parse(localStorage.getItem('cart'));
+    }
+    
+    $('.cart').click(function(){
+      console.log("clicked");
+    });
+
+</script>
+
+
+{% endblock %}
