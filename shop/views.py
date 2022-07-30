@@ -7,8 +7,8 @@ from math import ceil
 
 # Create your views here.
 def index(request):
-    Products = Product.objects.all()
-    print(Products)
+    #Products = Product.objects.all()
+    #print(Products)
    # n = len(Products)       # 6
     #nSlide = n // 4 + ceil( (n/4)- (n//4))  #6//4 + ceil((6/4)-(6//4)) = 0+ ceil(2 - 0) = 2
     #print(nSlide)"""
@@ -19,7 +19,7 @@ def index(request):
     categories = { item['category'] for item in category_prods}
     for cat in categories:
         prods = Product.objects.filter(category = cat)
-        n= len(Products)            #6
+        n= len(prods)            #6
         nSlide = n//4 + ceil((n/4)- (n//4))    
         print("nSlide=",nSlide) 
         all_prods.append([prods, range(1, nSlide), nSlide])
