@@ -45,7 +45,7 @@ def contact(request):
 
 #========== Tracking Status  =====================#
 def tracker(request):
-    return HttpResponse("We are at Tracker page")
+    return render(request, "shop/tracker.html")
 
 #============= Search ===========================#
 
