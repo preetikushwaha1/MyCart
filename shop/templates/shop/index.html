@@ -14,8 +14,8 @@
 
         .col-md-3 img{
 
-          max-width:227px;
-          height:180px;
+          width:120px;
+          height:170px;
         }
 
         body .carousel-indicators li{
@@ -46,6 +46,7 @@
       
             top:auto;
             bottom:auto;
+            padding-top: 180px;
         }
 
         body .no-padding{
@@ -62,10 +63,11 @@
 
 <div class="container">
 
-    {% for products, range, nSlide in all_prods %}
+  {% for products, range, nSlide in all_prods %}
     <h5 class="my-4">Flash Sale On {{products.0.category}}- Recommended Items</h5>
+    <div class="row">
     <!--=================== carousel =====================================-->
-    <div id="demo{{forloop.counter}}" class="carousel slide my-3" data-ride="carousel">
+    <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
 
@@ -100,13 +102,17 @@
     </div> <!---=======<div class="container carousel-inner no padding">=============-->
 </div>
 </div>
-    <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
-{% endfor %}
+      <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+
+    </div>
+
+    {% endfor %}
+
 </div>
 
 {% endblock %}
@@ -152,6 +158,12 @@
      localStorage.setItem('cart',JSON.stringify(cart));
      
   });
+
+
+  //===popover activate =================//
+  $('#popcart').popover();
+
+document.getElementById('popcart').setAttribute('data-content', '<h5>Cart your items for shopping</h5>');
 
 </script>
 
