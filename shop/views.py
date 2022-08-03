@@ -41,7 +41,7 @@ def aboutUs(request):
 #============= Contact us =======================#
 
 def contact(request):
-    return HttpResponse("We are at Contact Us")
+    return render(request, "shop/contact.html")
 
 #========== Tracking Status  =====================#
 def tracker(request):
