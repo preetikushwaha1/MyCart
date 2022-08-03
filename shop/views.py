@@ -43,9 +43,11 @@ def aboutUs(request):
 def contact(request):
     return render(request, "shop/contact.html")
 
+
 #========== Tracking Status  =====================#
 def tracker(request):
     return render(request, "shop/tracker.html")
+
 
 #============= Search ===========================#
 
@@ -53,8 +55,11 @@ def search(request):
     return HttpResponse("we are at searching page")
 
 #============ Product View ======================#
-def productView(request):
-    return HttpResponse("We are at Product View")
+def productView(request, Myid):
+    #fetch the product using the id
+    
+    product = Product.objects.filter(id = Myid)
+    return render(request, "shop/prodView.html" , {'access_prod' : product[0]})
 
 
 #========== Check Out =====================#
