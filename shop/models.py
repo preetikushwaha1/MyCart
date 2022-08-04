@@ -18,3 +18,10 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name            #ex: Ghadi , watch 
 
+
+class Contact(models.Model):
+    contact_id = models.AutoField(primary_key=True)
+    con_name = models.CharField(max_length=60,default=" ")
+    con_email = models.CharField(max_length="60",default=" ")
+    con_phone = models.IntegerField(max_length=10)
+    con_desc = models.CharField(max_length=500,default=" ")

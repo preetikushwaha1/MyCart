@@ -2,4 +2,36 @@
 
 {% block title %}Contact Us {% endblock %}  
 
-{% block body %} This is Body of the contact us page {% endblock %}  
+{% block body %} 
+
+<div class="container my-4">
+
+    <h3> Contact Us</h3>
+    <form action="/shop/contact/" method="post">
+        {% csrf_token %}            <!--- ==== Security purpose =====-->
+
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone No.</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone no.">
+          </div>
+        
+        <div class="form-group">
+          <label for="desc">How May I help you?</label>
+          <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+{% endblock %}  
