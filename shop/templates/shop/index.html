@@ -88,7 +88,7 @@
                 <img src="/media/{{i.image}}" class="d-block w-100" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">{{i.product_name }}</h5>
-                    <p class="card-text">{{ i.desc }}</p>
+                    <p class="card-text">{{ i.desc|slice:"0:50" }}...</p>
                     <button id="prod{{i.id}}" class="btn btn-primary cart">Add To Cart</button>
 
                     <a href="/shop/productview/{{i.id}}"> 
@@ -127,51 +127,6 @@
 
 <!--==================Js script block =====================-->
 {% block js %} 
-<script>
-  console.log("JS is working")
-
-  if(localStorage.getItem('cart')== null)
-  {
-      var cart = {};
-  }
-  else
-  {
-    try{
-        cart = JSON.parse(localStorage.getItem('cart'));
-        document.getElementById('Total_cart').innerHTML = Object.keys(cart).length;
-    }
-    catch(err){
-      console.log('Error:',err.message);
-    }
-  }
-  
-  $('.cart').click(function()
-  {
-     console.log("clicked");
-     var idstr = this.id.toString();
-     console.log(idstr);
-     if(cart[idstr] != undefined)
-     {
-        cart[idstr] =cart[idstr]+1;
-     }
-     else
-     {
-
-        cart[idstr] =1;
-     }
-     console.log(cart);
-
-     localStorage.setItem('cart',JSON.stringify(cart));
-     
-  });
-
-
-  //===popover activate =================//
-  $('#popcart').popover();
-
-document.getElementById('popcart').setAttribute('data-content', '<h5>Cart your items for shopping</h5>');
-
-</script>
 
 
 {% endblock %}
