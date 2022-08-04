@@ -20,8 +20,11 @@ class Product(models.Model):
 
 
 class Contact(models.Model):
-    contact_id = models.AutoField(primary_key=True)
+    contact_id = models.AutoField(primary_key =True)
     con_name = models.CharField(max_length=60,default=" ")
-    con_email = models.CharField(max_length="60",default=" ")
-    con_phone = models.IntegerField(max_length=10)
+    con_email = models.CharField(max_length=60,default=" ")
+    con_phone = models.IntegerField(max_length=10, default=" ")
     con_desc = models.CharField(max_length=500,default=" ")
+
+    def __str__(self):
+        return self.con_name        #
