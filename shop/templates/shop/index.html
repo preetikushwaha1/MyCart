@@ -84,7 +84,7 @@
             <!--====================this div is for product ========================-->
             {% for i in products %}
             <div class="col-xs-3 col-sm-3 col-md-3">
-              <div class="card" style="width:18rem">
+              <div class="card align-items-center" style="width:18rem">
                 <img src="/media/{{i.image}}" class="d-block w-100" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">{{i.product_name }}</h5>
@@ -127,6 +127,58 @@
 
 <!--==================Js script block =====================-->
 {% block js %} 
+<script>
+  console.log("JS is working")
+  var sum =0;
+  if(localStorage.getItem('cart')== null)
+  {
+      var cart = {};
+  }
+  else
+  {
+    try{
+        cart = JSON.parse(localStorage.getItem('cart'));
+       
+        no_of_products=Object.values(cart).length;
+        for(var i=0;i<=no_of_products;i++)
+        {
+          sum = sum+Object.values(cart)[i];
+        }
+        console.log(sum);
+        //document.getElementById('Total_cart').innerHTML = ;
+    }
+    catch(err){
+      console.log('Error:',err.message);
+    }
+  }
+  
+  $('.cart').click(function()
+  {
+     console.log("clicked");
+     var idstr = this.id.toString();
+     console.log(idstr);
+     if(cart[idstr] != undefined)
+     {
+        cart[idstr] =cart[idstr]+1;
+     }
+     else
+     {
+
+        cart[idstr] =1;
+     }
+     console.log(cart);
+
+     localStorage.setItem('cart',JSON.stringify(cart));
+     
+  });
+
+
+  //===popover activate =================//
+  $('#popcart').popover();
+
+document.getElementById('popcart').setAttribute('data-content', '<h5>Cart your items for shopping</h5>');
+
+</script>
 
 
 {% endblock %}
