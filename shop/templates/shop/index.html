@@ -89,7 +89,10 @@
                   <div class="card-body">
                     <h5 class="card-title">{{i.product_name }}</h5>
                     <p class="card-text">{{ i.desc|slice:"0:50" }}...</p>
-                    <button id="prod{{i.id}}" class="btn btn-primary cart">Add To Cart</button>
+
+                    <span id="divpr{{i.id}}">
+                        <button id="prod{{i.id}}" class="btn btn-primary cart">Add To Cart</button>
+                    </span>
 
                     <a href="/shop/productview/{{i.id}}"> 
                         <button id="qv{{i.id}}" class="btn btn-primary cart">Quick View</button>
@@ -128,57 +131,64 @@
 <!--==================Js script block =====================-->
 {% block js %} 
 <script>
-  console.log("JS is working")
-  var sum =0;
-  if(localStorage.getItem('cart')== null)
-  {
-      var cart = {};
-  }
-  else
-  {
-    try{
-        cart = JSON.parse(localStorage.getItem('cart'));
-       
-        no_of_products=Object.values(cart).length;
-        for(var i=0;i<=no_of_products;i++)
-        {
-          sum = sum+Object.values(cart)[i];
+      console.log("JS is working")
+    
+      //find out the cart items from localstorage 
+      if(localStorage.getItem('cart')== null)
+      {
+          var cart = {};
+      }
+      else
+      {
+        try{
+            cart = JSON.parse(localStorage.getItem('cart'));
+            document.getElementById('Total_cart').innerHTML = Object.keys(cart).length;
+            updateCart(cart);    //call Update Cart function 
         }
-        console.log(sum);
-        //document.getElementById('Total_cart').innerHTML = ;
-    }
-    catch(err){
-      console.log('Error:',err.message);
-    }
-  }
-  
-  $('.cart').click(function()
-  {
-     console.log("clicked");
-     var idstr = this.id.toString();
-     console.log(idstr);
-     if(cart[idstr] != undefined)
-     {
-        cart[idstr] =cart[idstr]+1;
-     }
-     else
-     {
+        catch(err){
+          console.log('Error:',err.message);
+        }
+      }
+      
 
-        cart[idstr] =1;
-     }
-     console.log(cart);
-
-     localStorage.setItem('cart',JSON.stringify(cart));
+      //if the Add To cart button is clicked add/increament the item
+      $('.cart').click(function()
+      {
+         //console.log("clicked");
+         var idstr = this.id.toString();
+         console.log(idstr);
+         if(cart[idstr] != undefined)
+         {
+            cart[idstr] =cart[idstr]+1;
+         }
+         else
+         {
+    
+            cart[idstr] =1;
+         }
+         console.log(cart);
      
-  });
+         localStorage.setItem('cart',JSON.stringify(cart));
+         
+      });
+    
+    
+      //===popover activate to Cart =================//
+      $('#popcart').popover();
+    
+    document.getElementById('popcart').setAttribute('data-content', '<h5>Cart your items for shopping</h5>');
+    
+    //=======================Update Cart===================//
 
+    function updateCart(cart){
+      console.log(cart);
+      for(var item in cart){
+          
+          document.getElementById('div'+item).innerHTML ="<button id='minus "+ item + " ' class='btn btn-primary minus'>-</button> <span id='val" + item + " ''>" + cart[item] + "</span><button id='plus"+ item +" ' class='btn btn-primary plus'> + </button>" ;
+    }
+    }
 
-  //===popover activate =================//
-  $('#popcart').popover();
-
-document.getElementById('popcart').setAttribute('data-content', '<h5>Cart your items for shopping</h5>');
-
-</script>
-
+    </script>
+    
 
 {% endblock %}
