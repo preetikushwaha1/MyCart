@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from shop.models import Product
+from shop.models import Product, Contact
 from math import ceil
 
 
@@ -30,7 +30,6 @@ def index(request):
     #==== Now will create a list of list ---======================#
     """all_prods = [ [Products, range(1, nSlide), nSlide ],
                     [Products, range(1, nSlide), nSlide ] ] """
-
     return render(request, "shop/index.html", {'all_prods': all_prods})
 
 #==========About Us ===========================#
@@ -49,7 +48,9 @@ def contact(request):
         phone = request.POST.get('phone'," ")
         desc = request.POST.get('desc'," ")
 
-        print(name,email,phone,desc)
+        #print(name,email,phone,desc)
+        contact_obj = Contact(con_name=name, con_email=email,con_phone=phone,con_desc=desc)  #sending data into database
+        contact_obj.save()
 
     return render(request, "shop/contact.html")
 
