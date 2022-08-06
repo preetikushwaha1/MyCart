@@ -184,7 +184,7 @@
       console.log(cart);
       for(var item in cart){
           
-          document.getElementById('div'+item).innerHTML ="<button id='minus "+ item + " ' class='btn btn-primary minus'>-</button> <span id='val" + item + " ''>" + cart[item] + "</span><button id='plus"+ item +" ' class='btn btn-primary plus'> + </button>" ;
+          document.getElementById('div'+item).innerHTML ="<button id='minus"+ item +"' class='btn btn-primary minus'>-</button> <span id='val"+ item +"'>" + cart[item] + "</span><button id='plus"+ item +"' class='btn btn-primary plus'>+</button>";
     }
     }
 
@@ -198,23 +198,23 @@
       a = this.id.slice(9, );
       console.log("minus id:",a);
       cart["prod"+a] = cart["prod"+a]-1;
-      //cart["prod"+a] = Math.max(0,cart["prod"+a]);   // to save form negative 
-      document.getElementById("valprod"+a).innerHTML = cart["prod"+a];
+      cart["prod"+a] = Math.max(0,cart["prod"+a]);   // to save form negative 
+      document.getElementById("valprod"+a).innerHTML = cart["prod" +a];
       updateCart(cart);
 
     });
 
     //if plus button is clicked 
-
-    $('.divprod').on("click","button.plus", function()
+    $('.divprod').on('click','button.plus', function() 
     {
-       console.log("plus clicked");
-       a = this.id.slice(8, );
-       console.log("plus id:",a);
-       cart["prod"+a] = cart["prod"+a]+1;
-       document.getElementById("valprod"+a).innerHTML = cart["prod"+a];
-       updateCart(cart);
-    }); 
+      console.log("plus clicked");
+      a = this.id.slice(8, );
+      console.log("plus id:",a);
+      cart["prod"+a] = cart["prod"+a]+1;  
+      document.getElementById("valprod"+a).innerHTML = cart["prod" +a];
+      updateCart(cart);
+
+    });
 
 
     </script>
