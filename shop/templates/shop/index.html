@@ -211,7 +211,7 @@
         }
         //To save in the cart
         localStorage.setItem('cart',JSON.stringify(cart));
-        document.getElementById("Total_cart").innerHTML = sum;
+        document.getElementById("Total_cart").innerHTML = sum;   // it for the cart quantity
         console.log(cart);
         Updatepopover(cart);
     }
