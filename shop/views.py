@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from shop.models import Product, Contact
+from shop.models import Product, Contact, Orders
 from math import ceil
 
 
@@ -76,4 +76,16 @@ def productView(request, Myid):
 
 #========== Check Out =====================#
 def checkout(request):
+    name= request.POST.get('inputname')
+    email = request.POSt.get('inputEmail4')
+    phone_no = request.POST.get('inputPhone')
+    Address1 = request.POST.get('inputAddress')
+    Address2 = request.POST.get('inputAddress2')
+    City = request.POST.get('inputCity')
+    State = request.POST.get('inputState')
+    Zip = request.POST.get('inputZip')
+
+    Orders_obj = Orders(ord_name=name,ord_email=email,ord_phone_no=phone_no,ord_Address1=Address1,ord_Address2=Address2,ord_city=City,ord_state=State,ord_zip=Zip)
+
+
     return render(request, "shop/checkout.html");

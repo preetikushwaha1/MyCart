@@ -28,3 +28,21 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.con_name        #
+
+
+
+class Orders(models.Model):
+    order_id = models.AutoField(primary_key=True)
+    items_json =models.CharField(max_length=1000)       #storing the items directly in the database
+    name = models.CharField(max_length=50,default=" ") 
+    email = models.CharField(max_length=50,default=" ")
+    phone_no = models.CharField(max_length=10,default=" ")
+    Address1 = models.CharField(max_length=150,default=" ")
+    Address2 =models.CharField(max_length=150,default=" ")
+    city = models.CharField(max_length=50,default=" ")
+    state = models.CharField(max_length=50,default=" ")
+    zip = models.CharField(max_length=50, default=" " )
+
+
+    def __str__(self):
+        return self.name
