@@ -125,8 +125,11 @@ $('#itemsJson').val(JSON.stringify(cart));
 //==============if success then clear the cart=====================//
 
 {% if success %}
+
+alert('Thank you ordering with us. your order id is {{id}}. Track you order using Tracker');
 localStorage.clear();       //
 
+{% endif %}  
 </script>
 
 

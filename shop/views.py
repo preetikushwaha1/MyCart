@@ -88,6 +88,8 @@ def checkout(request):
         Orders_obj = Orders(ord_name=name,ord_email=email,ord_phone_no=phone_no,ord_Address=Address,ord_city=City,ord_state=State,ord_zip_code=Zip_code)
         Orders_obj.save()
 
-        Success= true
+        Success= True
+        id = Orders_obj.order_id()
+        return render(request, "shop/checkout.html",{'success':Success, 'id':id})
 
-        return render(request, "shop/checkout.html",{'success':Success});
+    return render(request, "shop/checkout.html")
