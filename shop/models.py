@@ -34,15 +34,15 @@ class Contact(models.Model):
 class Orders(models.Model):
     order_id = models.AutoField(primary_key=True)
     items_json =models.CharField(max_length=1000)       #storing the items directly in the database
-    name = models.CharField(max_length=50,default=" ") 
-    email = models.CharField(max_length=50,default=" ")
-    phone_no = models.CharField(max_length=10,default=" ")
-    Address1 = models.CharField(max_length=150,default=" ")
-    Address2 =models.CharField(max_length=150,default=" ")
-    city = models.CharField(max_length=50,default=" ")
-    state = models.CharField(max_length=50,default=" ")
-    zip = models.CharField(max_length=50, default=" " )
+
+    ord_name = models.CharField(max_length=50,default=" ") 
+    ord_email = models.CharField(max_length=50,default=" ")
+    ord_phone_no = models.CharField(max_length=10,default=" ")
+    ord_Address = models.CharField(max_length=150,default=" ")
+    ord_city = models.CharField(max_length=50,default=" ")
+    ord_state = models.CharField(max_length=50,default=" ")
+    ord_zip_code = models.CharField(max_length=50, default=" " )
 
 
     def __str__(self):
-        return self.name
+        return self.ord_name

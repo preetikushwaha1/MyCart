@@ -76,16 +76,18 @@ def productView(request, Myid):
 
 #========== Check Out =====================#
 def checkout(request):
-    name= request.POST.get('inputname')
-    email = request.POSt.get('inputEmail4')
-    phone_no = request.POST.get('inputPhone')
-    Address1 = request.POST.get('inputAddress')
-    Address2 = request.POST.get('inputAddress2')
-    City = request.POST.get('inputCity')
-    State = request.POST.get('inputState')
-    Zip = request.POST.get('inputZip')
+    if request.method =="POST":
+        name= request.POST.get('inputname'," ")
+        email = request.POST.get('inputEmail4'," ")
+        phone_no = request.POST.get('inputPhone'," ")
+        Address = request.POST.get('inputAddress'," ") + " " +request.POST.get('inputAddress2'," ")
+        City = request.POST.get('inputCity'," ")
+        State = request.POST.get('inputState'," ")
+        Zip_code = request.POST.get('inputZip'," ")
 
-    Orders_obj = Orders(ord_name=name,ord_email=email,ord_phone_no=phone_no,ord_Address1=Address1,ord_Address2=Address2,ord_city=City,ord_state=State,ord_zip=Zip)
+        Orders_obj = Orders(ord_name=name,ord_email=email,ord_phone_no=phone_no,ord_Address=Address,ord_city=City,ord_state=State,ord_zip_code=Zip_code)
+        Orders_obj.save()
 
+        Success= true
 
-    return render(request, "shop/checkout.html");
+        return render(request, "shop/checkout.html",{'success':Success});

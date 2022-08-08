@@ -21,10 +21,10 @@
     <div class="col my-4">
         <h2>Step 2 - Enter your Address and other details</h2>
 
-        <form action="/shop/checkout" method="post">
+        <form action="/shop/checkout/" method="post">
             {% csrf_token %} 
             <!--======hidden input text =========-->
-            <input text="hidden" name="itemsJson" id="itemsJson">
+            <input type="hidden" name="itemsJson" id="itemsJson">
 
             <div class="form-row">
                <div class="form-group col-md-6  my-4">
@@ -118,6 +118,14 @@
 
 document.getElementById("Total_cart").innerHTML = sum;   
 
+//=====hidden text ======================//
+
+$('#itemsJson').val(JSON.stringify(cart));
+
+//==============if success then clear the cart=====================//
+
+{% if success %}
+localStorage.clear();       //
 
 </script>
 
