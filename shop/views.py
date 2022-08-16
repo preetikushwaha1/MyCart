@@ -77,6 +77,7 @@ def productView(request, Myid):
 #========== Check Out =====================#
 def checkout(request):
     if request.method =="POST":
+        item_json = request.POST.get('itemsJson'," ")
         name= request.POST.get('inputname'," ")
         email = request.POST.get('inputEmail4'," ")
         phone_no = request.POST.get('inputPhone'," ")
@@ -85,7 +86,7 @@ def checkout(request):
         State = request.POST.get('inputState'," ")
         Zip_code = request.POST.get('inputZip'," ")
 
-        Orders_obj = Orders(ord_name=name, ord_email=email, ord_phone_no=phone_no, ord_Address=Address, ord_city=City,
+        Orders_obj = Orders(items_json=item_json,ord_name=name, ord_email=email, ord_phone_no=phone_no, ord_Address=Address, ord_city=City,
                         ord_state=State, ord_zip_code=Zip_code)
         Orders_obj.save()
 
