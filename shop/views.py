@@ -1,4 +1,5 @@
 
+from sre_constants import SUCCESS
 from django.shortcuts import render
 from django.http import HttpResponse
 from shop.models import Product, Contact, Orders
@@ -51,6 +52,9 @@ def contact(request):
         #print(name,email,phone,desc)
         contact_obj = Contact(con_name=name, con_email=email,con_phone=phone,con_desc=desc)  #sending data into database
         contact_obj.save()
+
+        success = True
+        return render(request,"shop/contact.html", {'success':success})
 
     return render(request, "shop/contact.html")
 
