@@ -85,11 +85,12 @@ def checkout(request):
         State = request.POST.get('inputState'," ")
         Zip_code = request.POST.get('inputZip'," ")
 
-        Orders_obj = Orders(ord_name=name,ord_email=email,ord_phone_no=phone_no,ord_Address=Address,ord_city=City,ord_state=State,ord_zip_code=Zip_code)
+        Orders_obj = Orders(ord_name=name, ord_email=email, ord_phone_no=phone_no, ord_Address=Address, ord_city=City,
+                        ord_state=State, ord_zip_code=Zip_code)
         Orders_obj.save()
 
-        Success= True
-        id = Orders_obj.order_id()
-        return render(request, "shop/checkout.html",{'success':Success, 'id':id})
+        success= True
+        id = Orders_obj.order_id
+        return render(request, "shop/checkout.html",{'success':success, 'id':id})
 
     return render(request, "shop/checkout.html")

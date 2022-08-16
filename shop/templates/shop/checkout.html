@@ -129,6 +129,8 @@ $('#itemsJson').val(JSON.stringify(cart));
 alert('Thank you ordering with us. your order id is {{id}}. Track you order using Tracker');
 localStorage.clear();       //
 
+document.location="/shop";  //change location after checkout
+
 {% endif %}  
 </script>
 
