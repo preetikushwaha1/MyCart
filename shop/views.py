@@ -62,6 +62,15 @@ def contact(request):
 
 #========== Tracking Status  =====================#
 def tracker(request):
+
+    if request.method == "POST":
+        order_id = request.POST.get('order_id', "")
+        email = request.POSt.get('email',"")
+
+        try:
+            order = Orders.objects.filter(order_id= order_id, email = email)
+
+
     return render(request, "shop/tracker.html")
 
 
