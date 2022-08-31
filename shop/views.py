@@ -54,7 +54,7 @@ def contact(request):
         contact_obj.save()
 
         success = True
-        return render(request,"shop/contact.html", {'success':success})
+        return render(request, "shop/contact.html", {'success':success})
 
     return render(request, "shop/contact.html")
 
