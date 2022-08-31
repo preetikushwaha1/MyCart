@@ -1,9 +1,12 @@
 
 from sre_constants import SUCCESS
+from warnings import catch_warnings
 from django.shortcuts import render
 from django.http import HttpResponse
 from shop.models import Order_update, Product, Contact, Orders
 from math import ceil
+
+import json
 
 
 # Create your views here.
@@ -69,6 +72,20 @@ def tracker(request):
 
         try:
             order = Orders.objects.filter(order_id= order_id, email = email)
+            if(len(order)>0):
+                update = Order_update.objects.filter(order_id=order_id)
+                updates =[]
+                for item in update:
+                    updates.append({'text': item.update_desc, 'time': item.timestamp})
+                    response = json.dumps(updates)
+                    return HttpResponse(response)
+            else:
+                pass
+
+        except Exception as e:
+            pass
+
+
 
 
     return render(request, "shop/tracker.html")

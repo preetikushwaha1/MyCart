@@ -8,7 +8,7 @@
     <div class="col">
         <h2>Enter your Order id and Email address to Track your order</h2>
         
-        <form action="/shop/checkout/" method="post">
+        <form action="/shop/checkout/" method="post" id="trackerForm">
             {% csrf_token %} 
     
             <div class="form-row">
@@ -45,56 +45,30 @@
 {% block js %}  
 <script>
   
-    if(localStorage.getItem('cart') == null)
-    {
-        var cart ={};
+$('#trackerForm').submit(function(event)
+{
+    $('#items').empty();
+    var c = {
+        'orderId' : $('input[name=order_id]').val(),
+        'email' : $('input[name=email]').val(),
+        'csrfmiddlewaretoken' : $('input[name=csrfmiddlewaretoken]').val(),
     }
-    else
+
+    $.ajax({
+        type : 'POST',
+        url : '/shop/tracker/',
+        data : formData,
+        encode :true
+    })
+
+    .done(function(data)
     {
-        cart = JSON.parse(localStorage.getItem('cart'));
-    }
-     //console.log(cart);
+        console.log(data)
+    });
+    event.preventDefault();
+})
 
-     var sum=0;
-    if($.isEmptyObject(cart))
-    {
-            //if cart is empty
-            mystr =`<div class="alert alert-info my-4" role="alert">
-            Your cart is empty, please add some items to your cart before checking out! </div>`;
-            $('#alert').append(mystr);
-    }
-    else{
-        for(var item in cart)
-        {
-         
-            let qty = cart[item][0];
-            let name = cart[item][1];
-            sum = sum + qty;
-            mystr = `<li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
-                    ${name}
-                <span class="badge badge-primary badge-pill">${qty}</span>
-                </li>`
-
-            $('#items').append(mystr);
-        }
-}
-
-document.getElementById("Total_cart").innerHTML = sum;   
-
-//=====hidden text ======================//
-
-$('#itemsJson').val(JSON.stringify(cart));
-
-//==============if success then clear the cart=====================//
-
-{% if success %}
-
-alert('Thank you ordering with us. your order id is {{id}}. Track you order using Tracker');
-localStorage.clear();       //
-
-document.location="/shop";  //change location after checkout
-
-{% endif %}  
+ 
 </script>
 
 
