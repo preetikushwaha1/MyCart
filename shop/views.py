@@ -2,7 +2,7 @@
 from sre_constants import SUCCESS
 from django.shortcuts import render
 from django.http import HttpResponse
-from shop.models import Product, Contact, Orders
+from shop.models import Order_update, Product, Contact, Orders
 from math import ceil
 
 
@@ -91,8 +91,11 @@ def checkout(request):
         Zip_code = request.POST.get('inputZip'," ")
 
         Orders_obj = Orders(items_json=item_json,ord_name=name, ord_email=email, ord_phone_no=phone_no, ord_Address=Address, ord_city=City,
-                        ord_state=State, ord_zip_code=Zip_code)
-        Orders_obj.save()
+                        ord_state=State, ord_zip_code=Zip_code)  #stores data in database
+        Orders_obj.save()   
+
+        order_update = Order_update(order_id=Orders_obj.order_id, update_desc = "The order has been placed")
+        order_update.save()
 
         success= True
         id = Orders_obj.order_id
