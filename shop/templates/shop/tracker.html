@@ -8,7 +8,7 @@
     <div class="col">
         <h2>Enter your Order id and Email address to Track your order</h2>
         
-        <form action="/shop/checkout/" method="post" id="trackerForm">
+        <form action="#" method="post" id="trackerForm">
             {% csrf_token %} 
     
             <div class="form-row">
@@ -48,11 +48,11 @@
 $('#trackerForm').submit(function(event)
 {
     $('#items').empty();
-    var c = {
+    var formData = {
         'orderId' : $('input[name=order_id]').val(),
         'email' : $('input[name=email]').val(),
         'csrfmiddlewaretoken' : $('input[name=csrfmiddlewaretoken]').val(),
-    }
+    };
 
     $.ajax({
         type : 'POST',
@@ -61,12 +61,11 @@ $('#trackerForm').submit(function(event)
         encode :true
     })
 
-    .done(function(data)
-    {
+    .done(function(data){
         console.log(data)
     });
     event.preventDefault();
-})
+});
 
  
 </script>
