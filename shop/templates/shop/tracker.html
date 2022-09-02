@@ -23,7 +23,7 @@
               </div>
              
             </div>
-            <button type="submit" class="btn btn-primary">Place Order</button>
+            <button type="submit" class="btn btn-primary" name="submit">Place Order</button>
         </form>
  
     <div class="col my-4">
@@ -51,7 +51,7 @@ $('#trackerForm').submit(function(event)
     var formData = {
         'orderId' : $('input[name=order_id]').val(),
         'email' : $('input[name=email]').val(),
-        'csrfmiddlewaretoken' : $('input[name=csrfmiddlewaretoken]').val(),
+        'csrfmiddlewaretoken' : $('input[name=csrfmiddlewaretoken]').val()
     };
 
     $.ajax({
