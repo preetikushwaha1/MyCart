@@ -89,7 +89,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="nameprod{{i.id}}">{{i.product_name }}</h5>
                     <p class="card-text">{{ i.desc|slice:"0:50" }}...</p>
-                    <p class="card-text" style="color:red"><b>MRP: {{i.price}}</b></p>
+                    <p class="card-text" style="color:red"><b>Price:<span  id="priceprod{{i.id}}">{{i.price}}</span></b></p>
 
                     <span id="divprod{{i.id}}" class="divprod">
                         <button id="prod{{i.id}}" class="btn btn-primary cart">Add To Cart</button>
@@ -169,7 +169,10 @@
             qty =  1;
             name = document.getElementById('name'+idstr).innerHTML;
             console.log(name);
-            cart[idstr] = [qty, name];      // storing qty and name in array     
+
+            price = document.getElementById('price'+idstr).innerHTML;
+
+            cart[idstr] = [qty, name, price];      // storing qty ,name and price in array     
          }
          //console.log(cart);
          updateCart(cart);  // call update cart function 
