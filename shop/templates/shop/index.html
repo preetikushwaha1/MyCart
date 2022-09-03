@@ -89,6 +89,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="nameprod{{i.id}}">{{i.product_name }}</h5>
                     <p class="card-text">{{ i.desc|slice:"0:50" }}...</p>
+                    <p class="card-text" style="color:red"><b>MRP: {{i.price}}</b></p>
 
                     <span id="divprod{{i.id}}" class="divprod">
                         <button id="prod{{i.id}}" class="btn btn-primary cart">Add To Cart</button>

@@ -80,10 +80,10 @@ def tracker(request):
                     response = json.dumps(updates, default=str)
                 return HttpResponse(response)
             else:
-                return HttpResponse({})
+                return HttpResponse('{}')
 
         except Exception as e:
-            return HttpResponse({})
+            return HttpResponse('{}')
             #return HttpResponse(f"exception{e}")  #to print the exception on console log
     return render(request, "shop/tracker.html")
 
