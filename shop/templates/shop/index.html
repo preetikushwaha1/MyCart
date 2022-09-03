@@ -172,7 +172,7 @@
 
             price = document.getElementById('price'+idstr).innerHTML;
 
-            cart[idstr] = [qty, name, price];      // storing qty ,name and price in array     
+            cart[idstr] = [qty, name, parseInt(price)];      // storing qty ,name and price in array     
          }
          //console.log(cart);
          updateCart(cart);  // call update cart function 

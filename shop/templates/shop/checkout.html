@@ -8,13 +8,11 @@
     <div class="col">
         <h2>Step1 - My Awesome Cart Express Checkout - Review Your Cart Items </h2>
         <div>
-            <div id="alert">
-              </div>
-
-
-            <ul class="list-group my-4"   id ="items">
-               
-            </ul>
+            <div id="alert"></div>
+              <ul class="list-group my-4"   id ="items">   </ul>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-dark" style="color:blue;font-size:20px;font-weight:600">Total Price :<span id="total_price"></span>
+               </li></ul>
         </div>
     </div>
 
@@ -93,6 +91,7 @@
      //console.log(cart);
 
      var sum=0;
+     var totalprice=0;
     if($.isEmptyObject(cart))
     {
             //if cart is empty
@@ -106,7 +105,9 @@
          
             let qty = cart[item][0];
             let name = cart[item][1];
+            let itemprice = cart[item][2];
             sum = sum + qty;
+            totalprice =  totalprice + itemprice * qty;
             mystr = `<li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
                     ${name}
                 <span class="badge badge-primary badge-pill">${qty}</span>
@@ -116,7 +117,8 @@
         }
 }
 
-document.getElementById("Total_cart").innerHTML = sum;   
+document.getElementById("Total_cart").innerHTML = sum;  
+document.getElementById("total_price").innerHTML = totalprice;    
 
 //=====hidden text ======================//
 
