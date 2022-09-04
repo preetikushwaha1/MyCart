@@ -14,7 +14,10 @@
   
             <div class="blog-post">
               <h2 class="blog-post-title">{{post.head0}}</h2>
+              
               <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+              <div class="fb-like" data-href="http://127.0.0.1:8000/blog/blogPost/1" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
+              
   
               <p>{{post.c_head0}}</p>
               <hr>
@@ -25,8 +28,11 @@
 
               <h2>{{post.head2}}</h2>
               <p>{{post.c_head2}}</p>
+
+              <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogPost/{{post.post_id}}" data-width="" data-numposts="5"></div> 
            
             </div><!-- /.blog-post -->
+            
   
   
           </div><!-- /.blog-main -->
@@ -49,7 +55,19 @@
   
         </div><!-- /.row -->
   
-      </main>
+      </main><br>
+
+      
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="/blog/blogPost{">Previous</a></li>
+         
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
 </div>
+
+
 
 {% endblock %}
