@@ -4,3 +4,8 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request, "blog/index.html")
+
+
+
+def blogPost_fun(request):
+    return render(request, "blog/blog_post.html")
