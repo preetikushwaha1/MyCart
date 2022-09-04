@@ -30,7 +30,11 @@
 
         body .carousel-indicators{
 
-          bottom:0; 
+          bottom:-25px; 
+        }
+
+        .carousel-indicators li{
+          background-color: #7270fc;
         }
 
         body .carousel-control-prev-icon,
@@ -72,7 +76,7 @@
           <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
 
           {% for i in range %}
-          <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+          <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}" class="carousel-indicators"></li>
           {% endfor %}
         </ol>
 
