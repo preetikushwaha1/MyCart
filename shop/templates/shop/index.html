@@ -249,8 +249,16 @@
       a = this.id.slice(9, );
       //console.log("minus id:",a);
       cart["prod"+a][0] = cart["prod"+a][0]-1;
-      cart["prod"+a][0] = Math.max(0,cart["prod"+a][0]);   // to save form negative 
-      document.getElementById("valprod"+a).innerHTML = cart["prod" +a][0];
+      cart["prod"+a][0] = Math.max(0, cart["prod"+a][0]);   // to save form negative 
+  
+      if(cart["prod" +a][0] ==0)
+      {
+        document.getElementById("divprod"+a).innerHTML= '<button id="prod'+ a +'" class="btn btn-primary cart">Add To Cart</button>'
+        delete cart["prod" + a]; 
+      }
+      else{
+        document.getElementById("valprod"+a).innerHTML = cart["prod" +a][0];
+      }
       updateCart(cart);
 
     });
