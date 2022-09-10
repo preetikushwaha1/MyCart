@@ -35,6 +35,7 @@ class Orders(models.Model):
     order_id = models.AutoField(primary_key=True)
     items_json =models.CharField(max_length=1000)       #storing the items directly in the database
 
+    ord_amount = models.IntegerField(default=0)
     ord_name = models.CharField(max_length=50,default=" ") 
     ord_email = models.CharField(max_length=50,default=" ")
     ord_phone_no = models.CharField(max_length=10,default=" ")

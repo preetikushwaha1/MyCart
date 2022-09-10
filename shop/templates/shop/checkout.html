@@ -23,6 +23,7 @@
             {% csrf_token %} 
             <!--======hidden input text =========-->
             <input type="hidden" name="itemsJson" id="itemsJson">
+            <input type="hidden" name="ord_amount" id="ord_amount">
 
             <div class="form-row">
                <div class="form-group col-md-6  my-4">
@@ -134,6 +135,10 @@ localStorage.clear();       //
 document.location="/shop";  //change location after checkout
 
 {% endif %}  
+
+// ==========jquery to get the data from Total price and assign to order amount
+
+$('#ord_amount').val($('#total_price').html())
 </script>
 
 
