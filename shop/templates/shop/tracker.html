@@ -70,14 +70,14 @@ $('#trackerForm').submit(function(event)
         encode : true
     })
 
-    .done(function(data)
-    {
-        console.log(data)
+    .done(function(data){
+        $('#citems').empty();
+        //console.log(data)
         data = JSON.parse(data);
-        updates = data[0];
-       
-        if(updates.length>0 & updates !=  {})
-        {
+    
+        if(data['status'] =='success'){
+            updates = data['updates'];
+            
             for(i=0; i<updates.length; i++)
             {
             let text = updates[i]['text'];
@@ -90,30 +90,26 @@ $('#trackerForm').submit(function(event)
         
             $('#items').append(mystr);
             }
+        
+                    //fill in the order details
+            cart = JSON.parse(data["itemJson"])
+            //console.log(cart);
+                for(item in cart)
+                    {
+                        let qty = cart[item][0];
+                        let name = cart[item][1];
+                        mystr = `<li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+                                ${name}
+                            <span class="badge badge-primary badge-pill">${qty}</span>
+                            </li>`
+                        $('#citems').append(mystr);
+                }
         }
         else{
             mystr = `<li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
                 Sorry, We are not able to fetch this order id and email. Make sure  to type correct order id and email.</li>`
-            
             $('#items').append(mystr);
         }
-       
-        cart = JSON.parse(data[1])
-        console.log(cart);
-
-        for(var item in cart)
-        {
-         
-            let qty = cart[item][0];
-            let name = cart[item][1];
-            mystr = `<li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
-                    ${name}
-                <span class="badge badge-primary badge-pill">${qty}</span>
-                </li>`
-
-            $('#citems').append(mystr);
-        }
-       
     });
 
     event.preventDefault();
