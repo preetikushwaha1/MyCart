@@ -1,4 +1,5 @@
 
+from pickle import TRUE
 from sre_constants import SUCCESS
 from warnings import catch_warnings
 from django.shortcuts import render
@@ -35,6 +36,46 @@ def index(request):
     """all_prods = [ [Products, range(1, nSlide), nSlide ],
                     [Products, range(1, nSlide), nSlide ] ] """
     return render(request, "shop/index.html", {'all_prods': all_prods})
+
+
+#=============Search Match =================================#
+def search_match(query,item):
+    '''Return Ture only if query matches the item'''
+    if(query in item.product_name.lower() or query in item.category.lower() or query in item.desc.lower()):
+        return True
+    else:
+        return False
+
+
+#============= Search ===========================#
+
+def search(request):
+    query = request.GET.get('search')
+    all_prods =[]
+    category_prods = Product.objects.values('id', 'category')
+    print(category_prods)
+    categories = { item['category'] for item in category_prods}
+    for cat in categories:
+        prodtemp = Product.objects.filter(category = cat)
+        prods = [item for item in prodtemp if search_match(query, item)]
+
+        n= len(prods)            #6
+        nSlide = n//4 + ceil((n/4)- (n//4))    
+        print("nSlide=",nSlide) 
+        if(len(prods) !=0):
+            all_prods.append([prods, range(1, nSlide), nSlide])
+        print(cat)
+
+    #params ={'no_of_slide':nSlide, 'range': range(1,nSlide), 'products': Products}  #list 1
+
+    #==== Now will create a list of list ---======================#
+    """all_prods = [ [Products, range(1, nSlide), nSlide ],
+                    [Products, range(1, nSlide), nSlide ] ] """
+    return render(request, "shop/index.html", {'all_prods': all_prods})
+
+
+
+
 
 #==========About Us ===========================#
 def aboutUs(request):
@@ -89,10 +130,7 @@ def tracker(request):
     return render(request, "shop/tracker.html")
 
 
-#============= Search ===========================#
 
-def search(request):
-    return HttpResponse("we are at searching page")
 
 #============ Product View ======================#
 def productView(request, Myid):
